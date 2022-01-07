@@ -64,53 +64,75 @@ export default class Register extends Component
     render() 
     {     
         return (
-            <form className="form-container" noValidate = {true} id = "loginOrRegistrationForm">
+
+
+<div class="d-flex justify-content-center" style={{height: "100vh"}}>
+
+
+
+
+
+
+
+<div class="card text-center align-self-center my-auto bg-light border-dark"  style={{padding:"10vh"}}>
+  <div class="card-body">
+    <h2 class="card-title">New User Registration</h2>
+    <form noValidate = {true} id = "loginOrRegistrationForm">
            
-                {this.state.isRegistered ? <Redirect to="/DisplayAllCars"/> : null} 
-            
-                <h2>New User Registration</h2>
+           {this.state.isRegistered ? <Redirect to="/DisplayAllBooks"/> : null} 
+       
+
+      
+           <input  style={{margin: 5}}
+               name = "name"              
+               type = "text"
+               placeholder = "Name"
+               autoComplete="name"
+               value = {this.state.name}
+               onChange = {this.handleChange}
+               ref = {(input) => { this.inputToFocus = input }} 
+           /><br/>           
+
+       <input  style={{margin: 5}}
+               name = "email"              
+               type = "email"
+               placeholder = "Email"
+               autoComplete="email"
+               value = {this.state.email}
+               onChange = {this.handleChange}
+           /><br/>              
+
+       <input  style={{margin: 5}}
+               name = "password"           
+               type = "password"
+               placeholder = "Password"
+               autoComplete="password"
+               title = "Password must be at least ten-digits long and contains at least one lowercase letter, one uppercase letter, one digit and one of the following characters (£!#€$%^&*)"
+               value = {this.state.password}
+               onChange = {this.handleChange}
+           /><br/>           
+
+           <input  style={{margin: 5}} 
+               name = "confirmPassword"    
+               type = "password"
+               placeholder = "Confirm password"
+               autoComplete="confirmPassword"
+               value = {this.state.confirmPassword}
+               onChange = {this.handleChange}
+           /><br/>
            
-                <input  
-                    name = "name"              
-                    type = "text"
-                    placeholder = "Name"
-                    autoComplete="name"
-                    value = {this.state.name}
-                    onChange = {this.handleChange}
-                    ref = {(input) => { this.inputToFocus = input }} 
-                /><br/>           
 
-	        <input  
-                    name = "email"              
-                    type = "email"
-                    placeholder = "Email"
-                    autoComplete="email"
-                    value = {this.state.email}
-                    onChange = {this.handleChange}
-                /><br/>              
 
-	        <input  
-                    name = "password"           
-                    type = "password"
-                    placeholder = "Password"
-                    autoComplete="password"
-                    title = "Password must be at least ten-digits long and contains at least one lowercase letter, one uppercase letter, one digit and one of the following characters (£!#€$%^&*)"
-                    value = {this.state.password}
-                    onChange = {this.handleChange}
-                /><br/>           
 
-                <input          
-                    name = "confirmPassword"    
-                    type = "password"
-                    placeholder = "Confirm password"
-                    autoComplete="confirmPassword"
-                    value = {this.state.confirmPassword}
-                    onChange = {this.handleChange}
-                /><br/><br/>
+           <Link class="btn btn-outline-success" onClick={this.handleSubmit} style={{margin: 5}}>Register</Link>   
                 
-                <LinkInClass value="Register New User" className="green-button" onClick={this.handleSubmit} />
-                <Link className="red-button" to={"/DisplayAllCars"}>Cancel</Link>   
-            </form>
+                <Link class="btn btn-outline-danger" to={"/DisplayAllBooks"} style={{margin: 5}}>Cancel</Link>    
+
+       </form>
+    <p class="card-text">Or <a href="/Login" class="text-decoration-none">login</a> if you have an existing account</p>
+  </div>
+</div>
+</div>
         )
     }
 }

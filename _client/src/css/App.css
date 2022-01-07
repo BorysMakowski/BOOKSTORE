@@ -1,3 +1,6 @@
+body{
+    background-color: rgb(58, 58, 58);
+}
 .container {
   padding-top: 10px;
 }
@@ -5,7 +8,7 @@
 .form-container,
 .table-container 
 {
-  max-width: 700px;
+  max-width: 80%;
   margin: 0 auto;
 }
 
@@ -16,9 +19,11 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
-    background: #f7f7f7;
+    background: #dadada;
 }
-
+img{
+    max-width: 80%;
+}
 
 .logout
 {
@@ -128,7 +133,7 @@ color:pink;
 
 .table-container tbody tr:nth-child(even) 
 {
-    background-color: #ffa;
+    background-color: rgb(255, 235, 191);
 }
 
 .add-new-car

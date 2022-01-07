@@ -6,40 +6,6 @@ const usersModel = require(`../models/users`)
 const bcrypt = require('bcryptjs');  // needed for password encryption
 
 
-// IMPORTANT
-// Obviously, in a production release, you should never have the code below, as it allows a user to delete a database collection
-// The code below is for development testing purposes only 
-router.post(`/users/reset_user_collection`, (req,res) => 
-{
-    usersModel.deleteMany({}, (error, data) => 
-    {
-        if(data)
-        {
-            const adminPassword = `123!"£qweQWE`
-            bcrypt.hash(adminPassword, parseInt(process.env.PASSWORD_HASH_SALT_ROUNDS), (err, hash) =>  
-            {
-                if(err){console.log("bad")}
-                usersModel.create({name:"Administrator",email:"admin@admin.com",password:hash,accessLevel:parseInt(process.env.ACCESS_LEVEL_ADMIN)}, (createError, createData) => 
-                {
-                    if(createData)
-                    {
-                        res.json(createData)
-                    }
-                    else
-                    {
-                        res.json({errorMessage:`Failed to create Admin user for testing purposes`})
-                    }
-                })
-            })
-            
-        }
-        else
-        {
-            res.json({errorMessage:`User is not logged in`})
-        }
-    })      
-})
-
 
 router.post(`/users/register/:name/:email/:password`, (req,res) => 
 {

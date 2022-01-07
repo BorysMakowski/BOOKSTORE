@@ -49,7 +49,8 @@ export default class DisplayAllCars extends Component
   
     render() 
     {   
-        return (           
+        return (        
+               
             <div className="form-container">
                 {sessionStorage.accessLevel >  ACCESS_LEVEL_GUEST ? 
                     <div className="logout">
@@ -59,7 +60,7 @@ export default class DisplayAllCars extends Component
                     <div>
                         <Link className="green-button" to={"/Login"}>Login</Link>
                         <Link className="blue-button" to={"/Register"}>Register</Link>  
-                        <Link className="red-button" to={"/ResetDatabase"}>Reset Database</Link>  <br/><br/><br/></div>
+                       <br/><br/><br/></div>
                 }
                 
                 <div className="table-container">

@@ -55,9 +55,9 @@ export default class Logout extends Component
         return (
             <div>   
         
-                {!this.state.isLoggedIn ? <Redirect to="/DisplayAllCars"/> : null} 
+                {!this.state.isLoggedIn ? <Redirect to="/DisplayAllBooks"/> : null} 
                   
-                <LinkInClass value="Log out" className="red-button" onClick={this.handleSubmit}/> 
+                <LinkInClass value="Log out" className="nav-item" onClick={this.handleSubmit}/> 
             </div>
         )
     }

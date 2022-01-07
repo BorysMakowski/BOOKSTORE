@@ -60,12 +60,15 @@ export default class Login extends Component
     render()
     {            
         return (
-            <form className="form-container" noValidate = {true} id = "loginOrRegistrationForm">
-                <h2>Login</h2>
+<div class="d-flex justify-content-center" style={{height: "100vh"}}>
+<div class="card text-center align-self-center my-auto bg-light border-dark"  style={{padding:"10vh"}}>
+  <div class="card-body">
+    <h2 class="card-title">Login</h2>
+    <form  noValidate = {true} id = "loginOrRegistrationForm">
+
+                {this.state.isLoggedIn ? <Redirect to="/DisplayAllBooks"/> : null} 
                 
-                {this.state.isLoggedIn ? <Redirect to="/DisplayAllCars"/> : null} 
-                
-                <input 
+                <input  style={{margin: 5}} 
                     type = "email" 
                     name = "email" 
                     placeholder = "Email"
@@ -74,18 +77,24 @@ export default class Login extends Component
                     onChange={this.handleChange}
                 /><br/>
                     
-                <input 
+                <input style={{margin: 5}}
                     type = "password" 
                     name = "password" 
                     placeholder = "Password"
                     autoComplete="password"
                     value={this.state.password} 
                     onChange={this.handleChange}
-                /><br/><br/>
+                /><br/>
                 
-                <LinkInClass value="Login" className="green-button" onClick={this.handleSubmit}/> 
-                <Link className="red-button" to={"/DisplayAllCars"}>Cancel</Link>                                      
+                <Link class="btn btn-outline-success" onClick={this.handleSubmit} style={{margin: 5}}>Login</Link>   
+                
+                <Link class="btn btn-outline-danger" to={"/DisplayAllBooks"} style={{margin: 5}}>Cancel</Link>                                      
             </form>
+    <p class="card-text">Or <a href="/Register" class="text-decoration-none">make a new account</a> instead</p>
+  </div>
+</div>
+</div>
+
         )
     }
 }
