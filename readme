@@ -1,1 +1,6 @@
 bonjour
+    autorzy są teraz rozdzieleni przecinkami
+    ceny są xx.yy zamiast xx
+    wszystkie tabele są responsywne
+    dodałem Book.js, podstronke dla każdej książki z wyciągniętym raw data trzeba dodać guzik kup i
+    zrobić żeby było ładnie
