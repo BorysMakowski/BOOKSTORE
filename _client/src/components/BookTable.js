@@ -7,7 +7,7 @@ export default class BookTable extends Component
     render() 
     {
         return (
-            <table>
+            <table class="table table-responsive-md">
                 <thead>
                     <tr>
                         <th>Title</th>

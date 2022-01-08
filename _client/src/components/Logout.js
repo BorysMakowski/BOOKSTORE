@@ -20,7 +20,7 @@ export default class Logout extends Component
     
     handleSubmit = (e) => 
     {
-        e.preventDefault()
+
         
         axios.defaults.withCredentials = true // needed for sessions to work
         axios.post(`${SERVER_HOST}/users/logout`)
@@ -56,8 +56,8 @@ export default class Logout extends Component
             <div>   
         
                 {!this.state.isLoggedIn ? <Redirect to="/DisplayAllBooks"/> : null} 
-                  
-                <LinkInClass value="Log out" className="nav-item" onClick={this.handleSubmit}/> 
+                {this.handleSubmit()}
+ 
             </div>
         )
     }

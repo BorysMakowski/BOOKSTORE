@@ -23,9 +23,10 @@ import DisplayAllCars from "./components/DisplayAllCars"
 import DisplayAllBooks from "./components/DisplayAllBooks"
 import LoggedInRoute from "./components/LoggedInRoute"
 import Bestsellers from "./components/Bestellers"
-
+import Browse from "./components/Browse"
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
+import Book from "./components/Book"
 
 if (typeof sessionStorage.accessLevel === "undefined")
 {
@@ -48,11 +49,13 @@ export default class App extends Component
                     <LoggedInRoute exact path="/Logout" component={Logout} />
                     <LoggedInRoute exact path="/AddCar" component={AddCar} />
                     <LoggedInRoute exact path="/EditCar/:id" component={EditCar} />
+                    <Route exact path="/Book/:id" component={Book} />  
                     <LoggedInRoute exact path="/DeleteCar/:id" component={DeleteCar} />
                     <Route exact path="/DisplayAllCars" component={DisplayAllCars}/> 
                     <Route exact path="/Bestsellers" component={Bestsellers}/> 
+                    <Route exact path="/Browse" component={Browse}/> 
                     <Route exact path="/DisplayAllBooks" component={DisplayAllBooks}/>  
-                    <Route path="*" component={DisplayAllBooks}/>                            
+                    <Route path="*" component={DisplayAllBooks}/>                          
                 </Switch>
             </BrowserRouter>
         )

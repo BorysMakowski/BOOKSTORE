@@ -13,7 +13,7 @@ router.get(`/books`, (req, res) =>
     })
 })
 
-
+/*
 // Read one record
 router.get(`/books/:id`, (req, res) => 
 {
@@ -22,6 +22,16 @@ router.get(`/books/:id`, (req, res) =>
         res.json({errorMessage:`User is not logged in`})
     }
     else
+    {
+        booksModel.findById(req.params.id, (error, data) => 
+        {
+            res.json(data)
+        })
+    }
+*/
+// Read one record no login
+router.get(`/books/:id`, (req, res) => 
+{
     {
         booksModel.findById(req.params.id, (error, data) => 
         {
