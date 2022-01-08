@@ -8,7 +8,21 @@ import Logout from "./Logout"
 
 import {ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN, SERVER_HOST} from "../config/global_constants"
 
-
+function mapOrder (array, order, key) {
+  
+    array.sort( function (a, b) {
+      var A = a[key], B = b[key];
+      
+      if (order.indexOf(A) > order.indexOf(B)) {
+        return 1;
+      } else {
+        return -1;
+      }
+      
+    });
+    
+    return array;
+  };
 
 export default class Bestsellers extends Component 
 {
@@ -27,9 +41,7 @@ export default class Bestsellers extends Component
         let result = []
         axios.defaults.withCredentials = true // needed for sessions to work
         axios.get(`${SERVER_HOST}/stock/bestsellers`).then( stock_res => {   
-            console.log("AAAAAAAAAAAAAAAAASTOCK")
             console.log(stock_res.data)
-
             axios.get(`${SERVER_HOST}/books`).then(res=>{
                 if(res.data)
                 {
@@ -39,22 +51,8 @@ export default class Bestsellers extends Component
                     }
                     else
                     {           
-                        console.log("Records read")  
-    
-
-                            stock_res.forEach(function(key) {
-                            var found = false;
-                            res = res.filter(function(item) {
-                                if(!found && item[1]._id == key._id) {
-                                    result.push(item);
-                                    found = true;
-                                    return false;
-                                } else 
-                                    return true;
-                            })
-                        })
-                        
-                        console.log(res.data)
+                        result = res.data
+                        mapOrder(result, stock_res.data, '_id')
                         console.log("RESULT: ")
                         console.log(result)
                         this.setState({books: result}) 
