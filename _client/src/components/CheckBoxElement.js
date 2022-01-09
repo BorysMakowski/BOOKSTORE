@@ -8,10 +8,9 @@ export default class CheckBoxElement extends Component
 {    
     render() 
     {  
-        console.log('HALO')
-        console.log(this.props.element)
+       
         return (
-                
+
                 <option value={this.props.element}>{this.props.element} </option>
 
         )

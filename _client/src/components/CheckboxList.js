@@ -5,9 +5,9 @@ export default class CarTable extends Component
 {
     render() 
     {
-        console.log(this.props.data)
+     
         return (
-                <select>
+                <select id={this.props.id} style={{width:'20%'}}>
                     {this.props.data.map((element) => <CheckBoxElement element={element}/>)}
                 </select>
      

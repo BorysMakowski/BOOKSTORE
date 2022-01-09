@@ -60,36 +60,63 @@ export default class Browse extends Component
     }
 
 
-    applyFilters = (filters) =>{
+    applyCategoryFilter = (filter) =>{
         let array = [...this.state.books]
         let result = []
-        filters.forEach(filter => {
+   
             console.log("filter: " + filter)
             for(let i=0; i<array.length; i++){
-                let authors = array[i].authors
+  /*              let authors = array[i].authors
 
                 for(let j=0; j<authors.length; j++){
                     console.log("author: " + authors[j] + j)
                     if(authors[j] == filter){
                         result.push(array[i])
                     }
-                }
-               /* let categories = array[i].categories
-                for(let j=0; j<categories.length; j++){
-                    if(categories[j] != filter)
-                    array.pop(array[i])
                 }*/
+                let categories = array[i].categories
+                for(let j=0; j<categories.length; j++){
+                    if(categories[j] == filter)
+                    result.push(array[i])
+                }
+            
             }
-        });
         console.log(array)
         this.setState({books: result}) 
         
     }
-  
 
-    handleFilterButton = () =>{
-        this.applyFilters([
-            "W. Frank Ableson", "Robi Sen"])
+    handleCategoryFilterButton = () =>{
+        let cat = document.getElementById("select_cat")
+        cat = cat.value
+        this.applyCategoryFilter(cat)
+    }
+
+    handlePriceFilterButton = () =>{
+        let price = document.getElementById("select_price")
+        price = price.value
+        let array = [...this.state.books]
+
+        if(price == "ascending"){
+            array.sort((a, b) => (a.price > b.price ? 1 : -1))
+        }
+        else if(price=="descending"){
+            array.sort((a, b) => (a.price > b.price ? -1 : 1))
+        }
+        this.setState({books: array})
+    }
+    handleTitleFilterButton = () =>{
+        let title = document.getElementById("select_title")
+        title = title.value
+        let array = [...this.state.books]
+
+        if(title=="ascending"){ 
+             array.sort((a, b) => (a.title > b.title ? 1 : -1))
+        } else if(title=="descending"){
+            array.sort((a, b) => (a.title > b.title ? -1 : 1))
+        }
+
+        this.setState({books: array})
     }
 
     render() 
@@ -144,10 +171,24 @@ export default class Browse extends Component
    
                 
                 <div className="table-container">
-                    <h5>Filters</h5>
-                    Category: <CheckboxList data={this.state.categories} />
                     
-                                  
+                    <div style={{backgroundColor:'#b0b0b0', padding:'3%', borderRadius:20, textAlign:'right'}}> 
+                    <h5 style={{textAlign:'left'}}>Filters</h5>
+                    Category: <CheckboxList id={"select_cat"}data={this.state.categories} /> <button type="button" class="btn btn-light" onClick={this.handleCategoryFilterButton}>Apply</button><br/>
+                    Price: <select style={{width:'20%'}} id="select_price">
+                            <option value="" selected disabled hidden>Choose here</option>
+                            <option value="ascending">Ascending</option>
+                            <option  value="descending">Descending</option>
+                    </select>   <button type="button" class="btn btn-light" onClick={this.handlePriceFilterButton}>Apply</button> <br/>
+                    Title: <select style={{width:'20%'}} id="select_title">
+                    <option value="" selected disabled hidden>Choose here</option>
+                            <option  value="ascending">A-Z</option>
+                            <option  value="descending">Z-A</option>
+                    </select>
+                    <button type="button" class="btn btn-light" onClick={this.handleTitleFilterButton}>Apply</button>
+                    <br/>
+
+                    </div>
                     <BookTable books={this.state.books} /> 
                             
                     {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
