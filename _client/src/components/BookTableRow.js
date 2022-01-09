@@ -11,7 +11,7 @@ export default class BookTableRow extends Component
         return (
             <tr>
                 <td>{this.props.book.title}</td>
-                <td>{this.props.book.price.toFixed(2)}</td>
+                <td>{this.props.book.price.toFixed(2)} €</td>
                 <td><img src = {this.props.book.thumbnailUrl} alt="Thumbnail not found"/></td>
                 <td>{this.props.book.authors.join(", ")}</td>
                 <td>

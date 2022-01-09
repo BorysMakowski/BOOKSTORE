@@ -121,20 +121,21 @@ export default class Book extends Component
         </div>
         </nav>
    
-
-             <p>{this.state.price}</p>
-             <p>{this.state.title}</p>
-             <p>{this.state.isbn}</p>
-             <p>{this.state.pageCount}</p>
-             <p>{this.state.publishedDate}</p>
-             <img src = {this.state.thumbnailUrl} alt="Thumbnail not found"></img>
-             <p>{this.state.shortDescription}</p>
+             <div style={{textAlign:'center'}}>
+             <br/><br/><br/>
+             <h1>{this.state.title}</h1>
+             <h4>Price <b style={{color:'#414ea6'}}>{this.state.price} €</b></h4>
+             <p>ISBN: {this.state.isbn}</p>
+             <p>Page count: {this.state.pageCount}</p>
+             <p>Publish date: {this.state.publishedDate}</p>
+             <img style = {{width:'15%', height:'auto'}}src = {this.state.thumbnailUrl} alt="Thumbnail not found"></img>
+             <p style={{marginLeft:'10%', marginRight:'10%', marginTop:'2%'}}>{this.state.shortDescription}</p>
+             <h6>Description:</h6>
              <p>{this.state.longDescription}</p>
-             <p>{this.state.shortDescription}</p>
-             <p>{this.state.status}</p>
-             <p>{this.state.authors}</p>
+             
+             <p>Authors: {this.state.authors}</p>
              <p>{this.state.categories}</p>
-
+             </div>
             </div> 
         )
     }

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import axios from "axios"
 
 import BookTable from "./BookTable"
-
+import CheckboxList from "./CheckboxList"
 
 import {ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN, SERVER_HOST} from "../config/global_constants"
 
@@ -16,7 +16,8 @@ export default class Browse extends Component
         super(props)
         
         this.state = {
-            books:[]
+            books:[],
+            categories:[],
         }
     }
     
@@ -38,6 +39,17 @@ export default class Browse extends Component
                     console.log("Records read")   
                     console.log(res.data)
                     this.setState({books: res.data}) 
+                    let categories = this.state.books.map(book => book.categories)
+                    let uniqueCategories = new Set()
+
+                    categories.forEach(categoryArray =>{
+                        categoryArray.forEach(category =>[
+                            uniqueCategories.add(category)
+                        ])
+                    })
+                    uniqueCategories = Array.from(uniqueCategories)
+              
+                    this.setState({categories: uniqueCategories})
                 }   
             }
             else
@@ -132,8 +144,12 @@ export default class Browse extends Component
    
                 
                 <div className="table-container">
+                    <h5>Filters</h5>
+                    Category: <CheckboxList data={this.state.categories} />
+                    
+                                  
                     <BookTable books={this.state.books} /> 
-               
+                            
                     {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
                         <div className="add-new-car">
                             <Link className="blue-button" to={"/AddCar"}>Add New Car</Link>
