@@ -5,8 +5,9 @@ import axios from "axios"
 
 import BookTable from "./BookTable"
 import Logout from "./Logout"
+import BuyBook from "./BuyBook"
 
-import {ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN, SERVER_HOST} from "../config/global_constants"
+import {ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN, SERVER_HOST, SANDBOX_CLIENT_ID} from "../config/global_constants"
 
 
 export default class Book extends Component 
@@ -47,20 +48,45 @@ export default class Book extends Component
                 }
             else */}
                 { 
-                    this.setState({
-                        _id: res.data._id,
-                        price: res.data.price,
-                        title: res.data.title,
-                        isbn: res.data.isbn,
-                        pageCount: res.data.pageCount,
-                        publishedDate: res.data.publishedDate,
-                        thumbnailUrl: res.data.thumbnailUrl,
-                        shortDescription: res.data.shortDescription,
-                        longDescription: res.data.longDescription,
-                        status: res.data.status,
-                        authors: res.data.authors,
-                        categories: res.data.categories
-                    })
+                    console.log(res.data)
+                    if(res.data.publishedDate)
+                    {
+                        this.setState({
+                            _id: res.data._id,
+                            price: res.data.price,
+                            title: res.data.title,
+                            isbn: res.data.isbn,
+                            pageCount: res.data.pageCount,
+                            publishedDate: res.data.publishedDate.substring(0,10),
+                            thumbnailUrl: res.data.thumbnailUrl,
+                            shortDescription: res.data.shortDescription,
+                            longDescription: res.data.longDescription,
+                            status: res.data.status,
+                            authors: res.data.authors.join(", "),
+                            categories: res.data.categories
+                            
+                        })
+                    }
+                    else
+                    {
+                        this.setState({
+                            _id: res.data._id,
+                            price: res.data.price,
+                            title: res.data.title,
+                            isbn: res.data.isbn,
+                            pageCount: res.data.pageCount,
+                            publishedDate: '2000-03-12',
+                            thumbnailUrl: res.data.thumbnailUrl,
+                            shortDescription: res.data.shortDescription,
+                            longDescription: res.data.longDescription,
+                            status: res.data.status,
+                            authors: res.data.authors.join(", "),
+                            categories: res.data.categories
+                            
+                        })
+                    }
+
+                    
 
                 }
             }
@@ -121,21 +147,61 @@ export default class Book extends Component
         </div>
         </nav>
    
-             <div style={{textAlign:'center'}}>
-             <br/><br/><br/>
-             <h1>{this.state.title}</h1>
-             <h4>Price <b style={{color:'#414ea6'}}>{this.state.price} €</b></h4>
-             <p>ISBN: {this.state.isbn}</p>
-             <p>Page count: {this.state.pageCount}</p>
-             <p>Publish date: {this.state.publishedDate}</p>
-             <img style = {{width:'15%', height:'auto'}}src = {this.state.thumbnailUrl} alt="Thumbnail not found"></img>
-             <p style={{marginLeft:'10%', marginRight:'10%', marginTop:'2%'}}>{this.state.shortDescription}</p>
-             <h6>Description:</h6>
-             <p>{this.state.longDescription}</p>
-             
-             <p>Authors: {this.state.authors}</p>
-             <p>{this.state.categories}</p>
-             </div>
+<br></br><br></br><br></br>
+
+            <div class="row">
+                <div class="col">
+                    <img src = {this.state.thumbnailUrl} alt="Thumbnail not found" class="rounded mx-auto d-block"></img>
+                </div>
+                <div class="col">
+                    <h1>{this.state.title}</h1>
+                    <p>Authors: {this.state.authors}</p>
+                    <br></br>
+                    <h>Buy now for {this.state.price} €</h>
+                    <BuyBook price={this.state.price}/>
+                </div>
+                <div class="col">
+                    <p>Categories: {this.state.categories}</p>
+                    <p>ISBN: {this.state.isbn}</p>
+                    <p>Page count: {this.state.pageCount}</p>
+                    <p>Publish date: {this.state.publishedDate}</p>
+                </div>
+            </div>
+
+            
+
+<br></br><br></br>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Short description
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+      {this.state.shortDescription}
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Long description
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+      {this.state.longDescription}
+      </div>
+    </div>
+  </div>
+</div>
             </div> 
         )
     }

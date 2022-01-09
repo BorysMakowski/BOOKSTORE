@@ -8,3 +8,6 @@ export const ACCESS_LEVEL_ADMIN = 2
 
 // Server
 export const SERVER_HOST = `http://localhost:4000`
+
+// Paypal
+export const SANDBOX_CLIENT_ID = "AVTKp9k3c_OvWbS8PkBz6HKeROHe9Cyfmeg1TbP0YBbmPDwRjlC5pcfKEtjm2f9kzdoMjsaBDVCHFhwG"
