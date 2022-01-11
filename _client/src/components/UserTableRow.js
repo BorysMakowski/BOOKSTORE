@@ -15,7 +15,7 @@ export default class UserTableRow extends Component
 
 
         {<td>
-                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link class="btn btn-outline-danger" style={{padding:'40%'}}to={"/DeleteBook/" + this.props.book._id}>DELET</Link> : null}   
+                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link class="btn btn-outline-danger" style={{padding:'40%'}}to={"/DeleteBook/" + this.props.user._id}>DELET</Link> : null}   
                 </td>
                
              
