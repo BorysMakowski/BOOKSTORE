@@ -2,6 +2,7 @@ const mongoose = require(`mongoose`)
 
 let booksSchema = new mongoose.Schema(
    {
+        _id: {type: Number},
         price: {type: Number},
         title: {type: String},
         isbn: {type: String},

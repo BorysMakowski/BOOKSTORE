@@ -74,7 +74,7 @@ export default class DisplayAllBooks extends Component
                         null
             }
             {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?    
-                             <li class="nav-item" ><Link className="nav-link" to={"/AddCar"}>Manage users</Link></li>
+                             <li class="nav-item" ><Link className="nav-link" to={"/ManageUsers"}>Manage users</Link></li>
                     :
                         null
             }

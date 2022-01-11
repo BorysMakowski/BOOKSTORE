@@ -73,5 +73,44 @@ router.post(`/users/logout`, (req,res) =>
     res.json({})
 })
 
+router.get(`/users`, (req, res) => 
+{   
+    if(typeof req.session.user === `undefined`)
+    {
+        res.json({errorMessage:`User is not logged in`})
+    }
+    else{
+    usersModel.find((error, data) => 
+    {
+        console.log(error)
+        res.json(data)
+    })
+    }
+})
+
+
+// Delete one record
+router.delete(`/users/:id`, (req, res) => 
+{
+    if(typeof req.session.user === `undefined`)
+    {
+        res.json({errorMessage:`User is not logged in`})
+    }
+    else
+    {
+        if(req.session.user.accessLevel >= process.env.ACCESS_LEVEL_ADMIN)
+        {
+            usersModel.findByIdAndRemove(req.params.id, (error, data) => 
+            {
+                res.json(data)
+            })
+        }
+        else
+        {
+            res.json({errorMessage:`User is not an administrator, so they cannot delete records`})
+        }        
+    }
+})
+
 
 module.exports = router
