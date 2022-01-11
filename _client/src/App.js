@@ -16,9 +16,9 @@ import Register from "./components/Register"
 import ResetDatabase from "./components/ResetDatabase"
 import Login from "./components/Login"
 import Logout from "./components/Logout"
-import AddCar from "./components/AddCar"
-import EditCar from "./components/EditCar"
-import DeleteCar from "./components/DeleteCar"
+import AddBook from "./components/AddBook"
+import EditBook from "./components/EditBook"
+import DeleteBook from "./components/DeleteBook"
 import DisplayAllCars from "./components/DisplayAllCars"
 import DisplayAllBooks from "./components/DisplayAllBooks"
 import LoggedInRoute from "./components/LoggedInRoute"
@@ -47,10 +47,10 @@ export default class App extends Component
                     <Route exact path="/" component={DisplayAllBooks} />
                     <Route exact path="/Login" component={Login} />
                     <LoggedInRoute exact path="/Logout" component={Logout} />
-                    <LoggedInRoute exact path="/AddCar" component={AddCar} />
-                    <LoggedInRoute exact path="/EditCar/:id" component={EditCar} />
+                    <LoggedInRoute exact path="/AddBook" component={AddBook} />
+                    <LoggedInRoute exact path="/EditBook/:id" component={EditBook} />
                     <Route exact path="/Book/:id" component={Book} />  
-                    <LoggedInRoute exact path="/DeleteCar/:id" component={DeleteCar} />
+                    <LoggedInRoute exact path="/DeleteBook/:id" component={DeleteBook} />
                     <Route exact path="/DisplayAllCars" component={DisplayAllCars}/> 
                     <Route exact path="/Bestsellers" component={Bestsellers}/> 
                     <Route exact path="/Browse" component={Browse}/> 

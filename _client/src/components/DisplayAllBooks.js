@@ -67,6 +67,17 @@ export default class DisplayAllBooks extends Component
             <li class="nav-item">
                     <Link class="nav-link" to={"/Browse"}>Browse</Link>
             </li>
+                            
+            {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?    
+                             <li class="nav-item" ><Link className="nav-link" to={"/AddBook"}>Add book</Link></li>
+                    :
+                        null
+            }
+            {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?    
+                             <li class="nav-item" ><Link className="nav-link" to={"/AddCar"}>Manage users</Link></li>
+                    :
+                        null
+            }
             </ul>
 
             <ul class="nav navbar-nav mx-auto">
@@ -94,6 +105,7 @@ export default class DisplayAllBooks extends Component
                             :
                             <li class="nav-item" ><Link class="nav-link" to={"/Logout"}>Logout</Link> </li>
                             }
+                  
                             </ul>
         </div>
         </nav>
@@ -102,14 +114,7 @@ export default class DisplayAllBooks extends Component
                {/*<div className="table-container">*/}
                <div>
                     <BookTable books={this.state.books} /> 
-                        
-                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
-                        <div className="add-new-car">
-                            <Link className="blue-button" to={"/AddCar"}>Add New Car</Link>
-                        </div>
-                    :
-                        null
-                    }
+                  
                 </div>
             </div> 
         )

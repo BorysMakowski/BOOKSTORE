@@ -17,13 +17,19 @@ export default class BookTableRow extends Component
                 <td>
                 <Link class="btn btn-outline-secondary" to={"/Book/" + this.props.book._id}>Learn More</Link>
                 </td>
-        {/*}
-                <td>
-                    {sessionStorage.accessLevel > ACCESS_LEVEL_GUEST ? <Link className="green-button" to={"/EditCar/" + this.props.book._id}>Edit</Link> : null}
-                    
-                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link className="red-button" to={"/DeleteCar/" + this.props.book._id}>Delete</Link> : null}   
+        {
+             
+            <td>
+                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link class="btn btn-outline-info" style={{padding:'65%'}}to={"/EditBook/" + this.props.book._id}>Edit</Link> : null}
+                    </td>
+        }
+        <td></td>
+        {<td>
+                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link class="btn btn-outline-danger" style={{padding:'40%'}}to={"/DeleteBook/" + this.props.book._id}>Delete</Link> : null}   
                 </td>
-        */}
+               
+             
+        }
             </tr>
         )
     }

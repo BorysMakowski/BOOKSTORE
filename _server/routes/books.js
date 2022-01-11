@@ -87,6 +87,7 @@ router.put(`/books/:id`, (req, res) =>
 // Delete one record
 router.delete(`/books/:id`, (req, res) => 
 {
+    console.log(req.params.id)
     if(typeof req.session.user === `undefined`)
     {
         res.json({errorMessage:`User is not logged in`})
