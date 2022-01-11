@@ -170,34 +170,59 @@ export default class Browse extends Component
         </nav>
    
                 
-                <div className="table-container">
-                    
-                    <div style={{backgroundColor:'#b0b0b0', padding:'3%', borderRadius:20, textAlign:'right'}}> 
-                    <h5 style={{textAlign:'left'}}>Filters</h5>
-                    Category: <CheckboxList id={"select_cat"}data={this.state.categories} /> <button type="button" class="btn btn-light" onClick={this.handleCategoryFilterButton}>Apply</button><br/>
-                    Price: <select style={{width:'20%'}} id="select_price">
+                <div>
+<div class="accordion" id="accordionExample" style={{borderRadius:"7px", margin:"10px", textAlign:'left'}}>
+  <div class="card" style={{background: "#dadada", borderColor: "#dadada"}}>
+    <div class="card-header" id="headingOne" style={{background: "#dadada", borderColor: "#dadada"}}>
+      <h2 class="mb-0">
+        <button class="btn" type="button" class="btn btn-outline-secondary" data-toggle="collapse" data-target="#collapseOne" 
+        aria-expanded="true" aria-controls="collapseOne" style={{margin:"5px"}}>
+          Filters
+        </button>
+        <button class="btn" type="button" class="btn btn-outline-secondary" style={{margin:"5px"}}>
+          Clear Filters
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+      Category: <CheckboxList id={"select_cat"}data={this.state.categories} /> 
+      <button type="button" style={{margin:"5px"}} class="btn btn-outline-secondary" onClick={this.handleCategoryFilterButton}>Apply</button><br/>
+      </div>
+    </div>
+  </div>
+  <div class="card" style={{background: "#dadada", borderColor: "#dadada"}}>
+    <div class="card-header" id="headingTwo" style={{background: "#dadada", borderColor: "#dadada"}}>
+      <h2 class="mb-0">
+        <button class="btn" type="button" class="btn btn-outline-secondary" data-toggle="collapse" data-target="#collapseTwo" 
+        aria-expanded="false" aria-controls="collapseTwo" style={{margin:"5px"}}>
+        Sort by
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+      Price: <select style={{width:'20%'}} id="select_price">
                             <option value="" selected disabled hidden>Choose here</option>
                             <option value="ascending">Ascending</option>
                             <option  value="descending">Descending</option>
-                    </select>   <button type="button" class="btn btn-light" onClick={this.handlePriceFilterButton}>Apply</button> <br/>
+                    </select>   <button style={{margin:"5px"}} type="button" class="btn btn-outline-secondary" onClick={this.handlePriceFilterButton}>Apply</button> <br/>
                     Title: <select style={{width:'20%'}} id="select_title">
                     <option value="" selected disabled hidden>Choose here</option>
                             <option  value="ascending">A-Z</option>
                             <option  value="descending">Z-A</option>
                     </select>
-                    <button type="button" class="btn btn-light" onClick={this.handleTitleFilterButton}>Apply</button>
-                    <br/>
+                    <button style={{margin:"5px"}} type="button" class="btn btn-outline-secondary" onClick={this.handleTitleFilterButton}>Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+                    
 
-                    </div>
                     <BookTable books={this.state.books} /> 
                             
-                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
-                        <div className="add-new-car">
-                            <Link className="blue-button" to={"/AddCar"}>Add New Car</Link>
-                        </div>
-                    :
-                        null
-                    }
+
                 </div>
             </div> 
         )

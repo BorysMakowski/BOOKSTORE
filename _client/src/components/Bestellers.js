@@ -118,7 +118,7 @@ export default class Bestsellers extends Component
         </nav>
    
                 
-                <div className="table-container">
+                <div>
                     <BookTable books={this.state.books} /> 
                         
                     {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
