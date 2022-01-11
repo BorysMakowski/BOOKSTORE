@@ -15,7 +15,7 @@ export default class BestsellerTable extends Component
                         <th>Price</th>
                         <th>Thumbnail</th>
                         <th>Authors</th>
-                        <th>Times sold</th>
+                        <th colspan="2">Times sold</th>
                         <th> </th>
                     </tr>
                 </thead>

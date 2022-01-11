@@ -6,8 +6,10 @@ import axios from "axios"
 import BookTable from "./BookTable"
 import Logout from "./Logout"
 import BuyBook from "./BuyBook"
+import Navbar from './Navbar'
 
 import {ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN, SERVER_HOST, SANDBOX_CLIENT_ID} from "../config/global_constants"
+
 
 
 export default class Book extends Component 
@@ -103,54 +105,12 @@ export default class Book extends Component
             <div className="form-container">
    
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{borderRadius:"7px", margin:"10px"}}>
-        <Link class="navbar-brand" to={"/DisplayAllBooks"}>BooBook</Link> 
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav">
-            <li class="nav-item">
-                    <Link class="nav-link" to={"/Bestsellers"}>Bestsellers</Link> 
-            </li>
-            <li class="nav-item">
-                    <Link class="nav-link" to={"/Browse"}>Browse</Link>
-            </li>
-            </ul>
-
-            <ul class="nav navbar-nav mx-auto">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search"></input>
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-            <br></br>
-            </form>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right ml-auto" >
-           
-                            {sessionStorage.accessLevel ==  ACCESS_LEVEL_GUEST ? 
-                                 <li class="nav-link active">Hello, guest!</li>
-                            :
-                                <li class="nav-link active" >Hello, {sessionStorage.name}!</li> 
-                            }   
-                            {sessionStorage.accessLevel ==  ACCESS_LEVEL_GUEST ? 
-                                 <li class="nav-item" ><Link class="nav-link" to={"/Login"}>Login</Link></li>
-                            :
-                                <li class="nav-item" ><Link class="nav-link" to={"/Account"}>Account</Link></li>
-                            }
-                            {sessionStorage.accessLevel ==  ACCESS_LEVEL_GUEST ? 
-                                 <li class="nav-item" > <Link class="nav-link" to={"/Register"}>Register</Link></li> 
-                            :
-                            <li class="nav-item" ><Link class="nav-link" to={"/Logout"}>Logout</Link> </li>
-                            }
-                            </ul>
-        </div>
-        </nav>
+<Navbar></Navbar>
    
 <br></br><br></br><br></br>
 
             <div class="row">
-                <div class="col">
+                <div class="col-md-auto">
                     <img src = {this.state.thumbnailUrl} alt="Thumbnail not found" class="rounded mx-auto d-block"></img>
                 </div>
                 <div class="col">
@@ -202,6 +162,19 @@ export default class Book extends Component
     </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link class="btn btn-outline-info" to={"/EditBook/" + this.state._id} style={{margin:"5px"}}>Edit</Link> : null}
+
+    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link class="btn btn-outline-danger" to={"/DeleteBook/" + this.state._id} style={{margin:"5px"}}>Delete</Link> : null} 
+    </div>
+  </div>
+</div>
+
+ 
+
             </div> 
         )
     }

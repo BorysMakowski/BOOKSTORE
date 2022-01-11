@@ -1,6 +1,4 @@
 bonjour
-    autorzy są teraz rozdzieleni przecinkami
-    ceny są xx.yy zamiast xx
-    wszystkie tabele są responsywne
-    dodałem Book.js, podstronke dla każdej książki z wyciągniętym raw data trzeba dodać guzik kup i
-    zrobić żeby było ładnie
+    karuzela na stronie startowej totalnie dziala i wgl strona startowa istnieje 
+    added edit and delet butons on Book.js
+    navbar moved to its own file

@@ -4,7 +4,7 @@ import {Redirect, Link} from "react-router-dom"
 import axios from "axios"
 
 import LinkInClass from "../components/LinkInClass"
-
+import Navbar from './Navbar'
 import {ACCESS_LEVEL_NORMAL_USER, SERVER_HOST} from "../config/global_constants"
 
 export default class EditBook extends Component 
@@ -125,7 +125,7 @@ export default class EditBook extends Component
     {
         return (
             <div className="form-container">
-    
+    <Navbar></Navbar>
                 {this.state.redirectToDisplayAllBooks ? <Redirect to="/DisplayAllBooks"/> : null}  
                
                 <Form>

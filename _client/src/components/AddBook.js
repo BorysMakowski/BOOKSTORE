@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form"
 import axios from "axios"
 
 import LinkInClass from "../components/LinkInClass"
-
+import Navbar from './Navbar'
 import {ACCESS_LEVEL_NORMAL_USER, SERVER_HOST} from "../config/global_constants"
 
 export default class AddBook extends Component
@@ -95,7 +95,8 @@ export default class AddBook extends Component
     {        
         return (
             <div className="form-container"> 
-                {this.state.redirectToDisplayAllCars ? <Redirect to="/DisplayAllCars"/> : null}                                            
+                {this.state.redirectToDisplayAllCars ? <Redirect to="/DisplayAllCars"/> : null}         
+                <Navbar></Navbar>                                   
               
                 <Form>
                     <Form.Group controlId="title">
