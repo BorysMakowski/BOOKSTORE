@@ -44,7 +44,7 @@ router.get(`/books/:id`, (req, res) =>
 // Add new record
 router.post(`/books`, (req, res) => 
 {
-    console.log(req.headers.authorization)
+    console.log(req.body)
     if(typeof req.session.user === `undefined`)
     {
         res.json({errorMessage:`User is not logged in`})
@@ -53,9 +53,10 @@ router.post(`/books`, (req, res) =>
     {
         if(req.session.user.accessLevel !== `undefined` && req.session.user.accessLevel >= process.env.ACCESS_LEVEL_ADMIN)
         {
-
             booksModel.create(req.body, (error, data) => 
             {
+                if(error)
+                    console.log(error)
                 res.json(data)
             })
         }

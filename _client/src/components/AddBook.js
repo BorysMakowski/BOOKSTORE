@@ -48,6 +48,8 @@ export default class AddBook extends Component
     handleSubmit = (e) => 
     {
         e.preventDefault()
+        let categories =this.state.categories
+        let authors = this.state.authors
 
         const bookObject = {
             price: this.state.price,
@@ -59,8 +61,8 @@ export default class AddBook extends Component
             shortDescription: this.state.shortDescription,
             longDescription: this.state.longDescription,
             status: this.state.status,
-            authors: this.state.authors,
-            categories: this.state.categories
+            authors: authors,
+            categories: categories
         }
   
 
@@ -82,6 +84,7 @@ export default class AddBook extends Component
             }
             else
             {
+
                 console.log("Record not added")
             }
         })
@@ -135,6 +138,11 @@ export default class AddBook extends Component
                     <Form.Group controlId="longDescription">
                         <Form.Label>Long description</Form.Label>
                         <Form.Control type="text" name="longDescription" value={this.state.longDescription} onChange={this.handleChange} />
+                    </Form.Group>
+
+                    <Form.Group controlId="status">
+                        <Form.Label>Status (published / unpublished)</Form.Label>
+                        <Form.Control type="text" name="status" value={this.state.status} onChange={this.handleChange} />
                     </Form.Group>
 
 
