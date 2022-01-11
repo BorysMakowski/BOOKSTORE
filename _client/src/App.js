@@ -24,6 +24,7 @@ import DisplayAllBooks from "./components/DisplayAllBooks"
 import LoggedInRoute from "./components/LoggedInRoute"
 import Bestsellers from "./components/Bestellers"
 import Browse from "./components/Browse"
+import DeleteUser from "./components/DeleteUser";
 import ManageUsers from "./components/ManageUsers";
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
@@ -52,6 +53,7 @@ export default class App extends Component
                     <LoggedInRoute exact path="/EditBook/:id" component={EditBook} />
                     <Route exact path="/Book/:id" component={Book} />  
                     <LoggedInRoute exact path="/DeleteBook/:id" component={DeleteBook} />
+                    <LoggedInRoute exact path="/DeleteUser/:id" component={DeleteUser} />
                     <Route exact path="/DisplayAllCars" component={DisplayAllCars}/> 
                     <Route exact path="/Bestsellers" component={Bestsellers}/> 
                     <Route exact path="/Browse" component={Browse}/> 

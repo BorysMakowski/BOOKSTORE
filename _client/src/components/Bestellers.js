@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {Link} from "react-router-dom"
 
 import axios from "axios"
-
+import BestsellerTable from './BestsellerTable'
 import BookTable from "./BookTable"
 import Logout from "./Logout"
 
@@ -31,7 +31,7 @@ export default class Bestsellers extends Component
         super(props)
         
         this.state = {
-            books:[]
+            books:[],
         }
     }
     
@@ -39,6 +39,8 @@ export default class Bestsellers extends Component
     componentDidMount() 
     {
         let result = []
+        let stock_ = []
+        let sorted_array = []
         axios.defaults.withCredentials = true // needed for sessions to work
         axios.get(`${SERVER_HOST}/stock/bestsellers`).then( stock_res => {   
             console.log(stock_res.data)
@@ -51,8 +53,17 @@ export default class Bestsellers extends Component
                     }
                     else
                     {           
-                        result = res.data
-                        mapOrder(result, stock_res.data, '_id')
+                        
+                        sorted_array = mapOrder(res.data, stock_res.data, '_id')
+                        for(let i=0; i<10; i++){
+                            result.push({
+                                "title":res.data[i].title,
+                                "price":res.data[i].price,
+                                "thumbnailUrl":res.data[i].thumbnailUrl,
+                                "authors":res.data[i].authors,
+                                "timesSold":stock_res.data[i].times_sold
+                            })
+                        }
                         console.log("RESULT: ")
                         console.log(result)
                         this.setState({books: result}) 
@@ -119,7 +130,7 @@ export default class Bestsellers extends Component
    
                 
                 <div className="table-container">
-                    <BookTable books={this.state.books} /> 
+                    <BestsellerTable books={this.state.books}/> 
                         
                     {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
                         <div className="add-new-car">
