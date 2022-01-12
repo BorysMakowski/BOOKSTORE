@@ -130,7 +130,7 @@ export default class Book extends Component
                     <p>Authors: {this.state.authors}</p>
                     <br></br>
                     <p>Buy now for {this.state.price} €</p>
-                    {this.state.stock != 0 ? <BuyBook price={this.state.price}/>: <button type="button" class="btn btn-info disabled">Currently unavaiable</button>}
+                    {this.state.stock != 0 ? <BuyBook price={this.state.price} id={this.state._id}/>: <button type="button" class="btn btn-info disabled">Currently unavaiable</button>}
                     
                 </div>
                 <div class="col">
