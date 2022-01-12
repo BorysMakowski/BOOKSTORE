@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import PaypalButton from 'react-paypal-express-checkout'
 import {ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN, SERVER_HOST, SANDBOX_CLIENT_ID} from "../config/global_constants"
+import axios from "axios"
 
 
 export default class BuyBook extends Component 
@@ -10,7 +11,7 @@ export default class BuyBook extends Component
         super(props)
 
         this.state = {
-            stock = ''
+            stock : ''
         }
     }
     onSuccess = paymentData =>
@@ -42,7 +43,7 @@ export default class BuyBook extends Component
         })
 
         const stockObject = {
-            stock: res.data.stock - 1
+            stock: this.state.stock - 1
         }
 
         axios.put(`${SERVER_HOST}/stock/${this.props.match.params.id}`, stockObject)
