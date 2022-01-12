@@ -5,9 +5,66 @@ import {ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN, SERVER_HOST, SANDBOX_CLIENT_ID} 
 
 export default class BuyBook extends Component 
 {
+    constructor(props) 
+    {
+        super(props)
+
+        this.state = {
+            stock = ''
+        }
+    }
     onSuccess = paymentData =>
     {      
         console.log("PayPal payment was successful:", paymentData) 
+
+
+        axios.get(`${SERVER_HOST}/stock/${this.props.match.params.id}`)
+        .then(res => 
+        {     
+            if(res.data)
+            {
+                if (res.data.errorMessage)
+                {
+                    console.log(res.data.errorMessage)    
+                }
+                else
+                { 
+                    this.setState({
+                        stock: res.data.stock,
+                        
+                    })
+                }
+            }
+            else
+            {
+                console.log(`Record not found`)
+            }
+        })
+
+        const stockObject = {
+            stock: res.data.stock - 1
+        }
+
+        axios.put(`${SERVER_HOST}/stock/${this.props.match.params.id}`, stockObject)
+        .then(res => 
+        {             
+            if(res.data)
+            {
+                if (res.data.errorMessage)
+                {
+                    console.log(res.data.errorMessage)    
+                }
+                else
+                {      
+                    console.log(`Record updated`)
+                    this.setState({redirectToDisplayAllBooks:true})
+                }
+            }
+            else
+            {
+                console.log(`Record not updated`)
+            }
+        })
     }
     
     
