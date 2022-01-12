@@ -29,6 +29,7 @@ import ManageUsers from "./components/ManageUsers";
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 import Account from "./components/Account"
 import Book from "./components/Book"
+import PayPalMessage from "./components/PayPalMessage"  
 
 if (typeof sessionStorage.accessLevel === "undefined")
 {
@@ -60,7 +61,10 @@ export default class App extends Component
                     <Route exact path="/ManageUsers" component={ManageUsers}/> 
                     <Route exact path="/DisplayAllBooks" component={DisplayAllBooks}/>  
                     <Route exact path="/Account" component={Account}/>  
-                    <Route path="*" component={DisplayAllBooks}/>                          
+                    <Route exact path="/PayPalMessage/:messageType/:payPalPaymentID" component={PayPalMessage}/> 
+                    <Route path="*" component={DisplayAllBooks}/>      
+                    
+                                      
                 </Switch>
             </BrowserRouter>
         )
