@@ -20,6 +20,8 @@ router.get(`/stock`, (req, res) =>
     })
 })
 
+
+
 // read all records and sort by times sold
 router.get(`/stock/bestsellers`, (req, res) => 
 {   
@@ -34,17 +36,13 @@ router.get(`/stock/bestsellers`, (req, res) =>
 // Read one record
 router.get(`/stock/:id`, (req, res) => 
 {
-    if(typeof req.session.user === `undefined`)
-    {
-        res.json({errorMessage:`User is not logged in`})
-    }
-    else
-    {
+
         stockModel.findById(req.params.id, (error, data) => 
         {
+            console.log(error)
             res.json(data)
         })
-    }
+    
 })
 
 

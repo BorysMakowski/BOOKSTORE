@@ -35,7 +35,7 @@ export default class BuyBook extends Component
             <PaypalButton 
                 env = {environment}
                 client = {client_id}
-                
+                disabled = {this.props.disabled}
                 currency = "EUR"
                 total = {this.props.price}
                 

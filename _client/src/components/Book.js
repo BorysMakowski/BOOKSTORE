@@ -30,14 +30,15 @@ export default class Book extends Component
             longDescription: ``,
             status: ``,
             authors: ``,
-            categories: ``
+            categories: ``,
+            stock:``
         }
     }
 
     componentDidMount() 
     {      
 
-  console.log(this.props.match.params.id)
+       console.log(this.props.match.params.id)
         axios.defaults.withCredentials = true // needed for sessions to work
         axios.get(`${SERVER_HOST}/books/${this.props.match.params.id}`)
         .then(res => 
@@ -50,7 +51,7 @@ export default class Book extends Component
                 }
             else */}
                 { 
-                    console.log(res.data)
+
                     if(res.data.publishedDate)
                     {
                         this.setState({
@@ -97,6 +98,17 @@ export default class Book extends Component
                 console.log(`Record not found`)
             }
         })
+
+        axios.get(`${SERVER_HOST}/stock/${this.props.match.params.id}`).then(stock_res => {   
+          console.log(stock_res.data)
+            if(stock_res.data){
+              this.setState({
+                stock : stock_res.data.stock
+              })
+            }
+
+        })
+
     }
   
     render() 
@@ -117,14 +129,17 @@ export default class Book extends Component
                     <h1>{this.state.title}</h1>
                     <p>Authors: {this.state.authors}</p>
                     <br></br>
-                    <h>Buy now for {this.state.price} €</h>
-                    <BuyBook price={this.state.price}/>
+                    <p>Buy now for {this.state.price} €</p>
+                    {this.state.stock != 0 ? <BuyBook price={this.state.price}/>: <button type="button" class="btn btn-info disabled">Currently unavaiable</button>}
+                    
                 </div>
                 <div class="col">
                     <p>Categories: {this.state.categories}</p>
                     <p>ISBN: {this.state.isbn}</p>
                     <p>Page count: {this.state.pageCount}</p>
                     <p>Publish date: {this.state.publishedDate}</p>
+                    <p>In stock: {this.state.stock}</p>
+                  
                 </div>
             </div>
 
