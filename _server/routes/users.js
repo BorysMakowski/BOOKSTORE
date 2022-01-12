@@ -84,6 +84,30 @@ router.get(`/users`, (req, res) =>
     
 })
 
+router.get(`/users/:email`, (req, res) => 
+{   
+    usersModel.findOne({email:req.params.email}, (error, data) => 
+    {
+        if(data){
+            console.log(data)
+            res.json(data)
+        }
+    })
+    
+})
+
+
+router.put(`/books/:email`, (req, res) => 
+{
+ 
+        users.findOneAndUpdate({email:req.params.email}, {$set: req.body}, (error, data) => 
+        {
+            res.json(data)
+        })        
+
+})
+
+
 
 // Delete one record
 router.delete(`/users/:id`, (req, res) => 

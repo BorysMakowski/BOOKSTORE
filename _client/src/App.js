@@ -27,7 +27,7 @@ import Browse from "./components/Browse"
 import DeleteUser from "./components/DeleteUser";
 import ManageUsers from "./components/ManageUsers";
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
-
+import Account from "./components/Account"
 import Book from "./components/Book"
 
 if (typeof sessionStorage.accessLevel === "undefined")
@@ -59,6 +59,7 @@ export default class App extends Component
                     <Route exact path="/Browse" component={Browse}/> 
                     <Route exact path="/ManageUsers" component={ManageUsers}/> 
                     <Route exact path="/DisplayAllBooks" component={DisplayAllBooks}/>  
+                    <Route exact path="/Account" component={Account}/>  
                     <Route path="*" component={DisplayAllBooks}/>                          
                 </Switch>
             </BrowserRouter>

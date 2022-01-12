@@ -43,6 +43,7 @@ export default class Login extends Component
                     console.log("User logged in")
                     
                     sessionStorage.name = res.data.name
+                    sessionStorage.email = this.state.email
                     localStorage.token = res.data.token
                     sessionStorage.accessLevel = res.data.accessLevel
                     
